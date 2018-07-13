@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ <!-- namespace指定是对哪个接口的映射 -->
+<mapper namespace="com.briup.app02.dao.StudentMapper">
+<!-- id指对哪个方法的实现  resultType返回结果类型的全类名-->
+	<select id="findAll" resultType="com.briup.app02.bean.Student">
+		select * from tab_student
+	</select>
+	<select id="findById" parameterType="long" resultType="com.briup.app02.bean.Student">
+		select * from tab_student where id = #{id}
+	</select>
+	<!-- 保存学生信息 -->
+	<insert id="saveStudent" parameterType="com.briup.app02.bean.Student">
+		insert into tab_student values(null,#{name},#{age})
+	</insert>
+	<update id="updateStudent" parameterType="com.briup.app02.bean.Student">
+		update tab_student
+		set name = #{name},age = #{age}
+		where id = #{id}
+	</update>
+	<delete id="deleteStudent" parameterType="long">
+		delete from tab_student
+		where id= #{id}
+	</delete>
+	
+</mapper>
